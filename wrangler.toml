@@ -1,0 +1,11 @@
+name = "share-pages-app"
+compatibility_date = "2026-04-02"
+pages_build_output_dir = "."
+
+[[r2_buckets]]
+binding = "SHARES_BUCKET"
+bucket_name = "replace-with-your-r2-bucket"
+
+[vars]
+CLEANUP_MODE = "shanghai-daily"
+RETENTION_HOURS = "24"

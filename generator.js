@@ -1,5 +1,3 @@
-import { upload } from "https://esm.sh/@vercel/blob/client";
-
 const form = document.getElementById("generatorForm");
 const titleInput = document.getElementById("titleInput");
 const descriptionInput = document.getElementById("descriptionInput");
@@ -64,30 +62,16 @@ form.addEventListener("submit", async (event) => {
   statusText.textContent = "正在直传图片并生成分享链接...";
 
   try {
-    const uploadedProduct = await upload(`product-${Date.now()}-${productImage.name}`, productImage, {
-      access: "public",
-      handleUploadUrl: "/api/blob-upload",
-      multipart: true
-    });
-
-    const uploadedDetail = await upload(`detail-${Date.now()}-${detailImage.name}`, detailImage, {
-      access: "public",
-      handleUploadUrl: "/api/blob-upload",
-      multipart: true
-    });
+    const formData = new FormData();
+    formData.append("title", titleInput.value.trim());
+    formData.append("description", descriptionInput.value.trim());
+    formData.append("time", timeInput.value.trim());
+    formData.append("productImage", productImage);
+    formData.append("detailImage", detailImage);
 
     const response = await fetch("/api/create-share", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        title: titleInput.value.trim(),
-        description: descriptionInput.value.trim(),
-        time: timeInput.value.trim(),
-        productImageUrl: uploadedProduct.url,
-        detailImageUrl: uploadedDetail.url
-      })
+      body: formData
     });
 
     const result = await response.json();

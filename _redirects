@@ -1,0 +1,2 @@
+/share/:id /order.html?share=:id 200
+/detail/:id /detail.html?share=:id 200
