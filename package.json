@@ -1,0 +1,9 @@
+{
+  "name": "vercel-share-page",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@vercel/blob": "^1.1.1",
+    "tar": "^7.5.13"
+  }
+}

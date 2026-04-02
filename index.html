@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生成商品分享页</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app app-config">
+    <main class="config-shell">
+      <header class="config-header">
+        <h1>生成商品分享页</h1>
+        <p>输入商品文案，上传商品图和商品详情长图，点击生成后会得到一个可分享链接。别人打开链接后先看到订单页，再从“未使用”进入详情长图页。</p>
+      </header>
+
+      <section class="notice-card">
+        <h2>使用说明</h2>
+        <p>部署到 Vercel 后，这个页面会作为首页。移动端浏览器也可以直接从手机相册选择图片。</p>
+      </section>
+
+      <form class="config-form" id="generatorForm">
+        <label class="field">
+          <span class="field-label">商品标题</span>
+          <input class="field-input" id="titleInput" type="text" maxlength="40" placeholder="例如：春日写真套餐" required>
+        </label>
+
+        <label class="field">
+          <span class="field-label">商品文案</span>
+          <textarea class="field-textarea" id="descriptionInput" maxlength="160" placeholder="例如：双人写真，周末可用，需提前一天预约" required></textarea>
+        </label>
+
+        <label class="field">
+          <span class="field-label">时间文案</span>
+          <input class="field-input" id="timeInput" type="text" maxlength="40" placeholder="例如：2026-04-02 18:30">
+        </label>
+
+        <label class="field">
+          <span class="field-label">商品图片</span>
+          <input class="field-input" id="productImageInput" type="file" accept="image/*" required>
+          <small class="field-help">展示在订单卡片左侧的小图。</small>
+        </label>
+
+        <label class="field">
+          <span class="field-label">商品详情长图</span>
+          <input class="field-input" id="detailImageInput" type="file" accept="image/*" required>
+          <small class="field-help">点击“未使用”中的商品后，会跳转到这张长图详情页。</small>
+        </label>
+
+        <div class="form-actions">
+          <button class="primary-action" type="submit" id="submitButton">生成分享链接</button>
+        </div>
+      </form>
+
+      <section class="preview-panel">
+        <h2>图片预览</h2>
+        <div class="dual-preview">
+          <div class="preview-card">
+            <div class="preview-image" id="productPreview"></div>
+            <div class="preview-caption">商品图片</div>
+          </div>
+          <div class="preview-card">
+            <div class="preview-image preview-tall" id="detailPreview"></div>
+            <div class="preview-caption">详情长图</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="result-card" id="resultCard" hidden>
+        <h2>已生成链接</h2>
+        <p class="result-text">复制下面的链接发给别人，对方打开后会直接进入订单展示页。</p>
+        <div class="result-box">
+          <input class="field-input" id="shareLinkInput" type="text" readonly>
+          <button class="secondary-action" type="button" id="copyButton">复制链接</button>
+        </div>
+      </section>
+
+      <section class="notice-card" id="statusCard">
+        <h2>当前状态</h2>
+        <p id="statusText">等待填写内容。</p>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="generator.js"></script>
+</body>
+</html>

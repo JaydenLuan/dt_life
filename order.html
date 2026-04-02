@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>订单展示</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <main class="phone-shell">
+      <header class="tabs-wrap">
+        <div class="tabs">
+          <button class="tab is-active" data-tab="all" type="button">全部</button>
+          <button class="tab" data-tab="pending" type="button">待支付</button>
+          <button class="tab" data-tab="unused" type="button">未使用</button>
+          <button class="tab" data-tab="used" type="button">已使用</button>
+          <button class="tab" data-tab="expired" type="button">已失效</button>
+        </div>
+      </header>
+
+      <section class="banner">
+        <p class="banner-title">订单展示页</p>
+        <p class="banner-text" id="bannerText">正在加载商品信息...</p>
+      </section>
+
+      <section class="order-list" id="orderList"></section>
+
+      <section class="empty-state" id="emptyState" aria-live="polite">
+        <div class="empty-illustration">
+          <div class="empty-box"></div>
+          <div class="empty-ring"></div>
+        </div>
+        <p class="empty-text">当前没有可展示的订单</p>
+      </section>
+    </main>
+  </div>
+
+  <template id="orderCardTemplate">
+    <article class="order-card" data-status="unused">
+      <div class="order-title">
+        <h1 class="order-name"></h1>
+        <span class="order-status status-unused"></span>
+      </div>
+      <div class="order-body">
+        <div class="order-cover">
+          <div class="order-image"></div>
+          <div class="order-mask">
+            <div class="order-mask-icon">✓</div>
+            <div class="order-mask-text">砍价成功</div>
+          </div>
+        </div>
+        <div class="order-detail">
+          <p class="order-description"></p>
+          <div class="order-meta">
+            <span class="order-time"></span>
+          </div>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script src="viewer.js"></script>
+</body>
+</html>
